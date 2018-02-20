@@ -23,6 +23,7 @@
  * getExpensePolicyTaxes https://www.rindegastos.com/api/expensePolicies#pos-getExpensePolicyTaxes
  * getUsers https://www.rindegastos.com/api/users#pos-getUsers
  * getUser https://www.rindegastos.com/api/users#pos-getUser
+ * setExpenseReportCustomStatus https://www.rindegastos.com/api/expenseReport#pos-setExpenseReportCustomStatus
  */
 
 package rindegastosapi;
@@ -856,6 +857,50 @@ public class SdkRindegastos {
             conn.disconnect();
 
         
+    }
+    
+    
+    public void setExpenseReportCustomStatus(HashMap<String, String> paramsSetExpenseReportCustomStatus) throws MalformedURLException, IOException {
+
+        String url = "https://api.rindegastos.com/v1/setExpenseReportCustomStatus";
+        URL obj = new URL(url);
+        HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+
+        //add reuqest header
+        con.setRequestMethod("PUT");
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+        JSONObject objArray = new JSONObject();
+        objArray.put("Id", paramsSetExpenseReportCustomStatus.get("Id"));
+        objArray.put("IdAdmin", paramsSetExpenseReportCustomStatus.get("IdAdmin"));
+        objArray.put("CustomStatus", paramsSetExpenseReportCustomStatus.get("CustomStatus"));
+        objArray.put("CustomMessage", paramsSetExpenseReportCustomStatus.get("CustomMessage"));
+
+        // Send post request
+        con.setRequestProperty("Authorization", "Bearer " + token);
+        con.setDoOutput(true);
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        wr.writeBytes(objArray.toJSONString());
+        wr.flush();
+        wr.close();
+
+        int responseCode = con.getResponseCode();
+
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        //print result
+        System.out.println(response.toString());
+
     }
     
 

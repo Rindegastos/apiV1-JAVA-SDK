@@ -353,6 +353,20 @@ public class RindegastosApi {
         /* End Method getUser
         */
         
+        /*
+         *Method setExpenseReportCustomStatus
+        //definition of parameters to setFundStatus
+        HashMap<String,String> paramsSetExpenseReportCustomStatus = new HashMap<>();
+        paramsSetExpenseReportCustomStatus.put("Id", "180309");
+        paramsSetExpenseReportCustomStatus.put("IdAdmin", "9999");
+        paramsSetExpenseReportCustomStatus.put("CustomStatus", "Test JAVA");
+        paramsSetExpenseReportCustomStatus.put("CustomMessage", "Esta es una prueba desde SDK JAVA");
+        
+        //example calling method createFund
+        x.setExpenseReportCustomStatus(paramsSetExpenseReportCustomStatus);
+        /* End Method createFund
+        */
+        
     }
     
 }
